@@ -47,7 +47,8 @@ namespace Serwer_Echo_Lib
 
         private void TransmissionCallback(IAsyncResult ar)
         {
-            // sprzątanie
+            TcpClient client = (TcpClient)ar.AsyncState;
+            client.Close();
         }
 
         protected override void BeginDataTransmission(NetworkStream stream)
