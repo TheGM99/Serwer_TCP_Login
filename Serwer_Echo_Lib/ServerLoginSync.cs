@@ -11,10 +11,10 @@ namespace Serwer_Echo_Lib
     /// <summary>
     /// This class implements the most basic TCP Server of the Echo Type.
     /// </summary>
-    public class ServerEchoSync : ServerEcho
+    public class ServerLoginSync : ServerLogin
 
     {
-        public ServerEchoSync(IPAddress IP, int port) : base(IP, port)
+        public ServerLoginSync(IPAddress IP, int port) : base(IP, port)
         {
 
         }

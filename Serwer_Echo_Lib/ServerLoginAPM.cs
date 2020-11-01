@@ -10,11 +10,11 @@ using System.Text;
 namespace Serwer_Echo_Lib
 {
 
-    public class ServerEchoAPM : ServerEcho
+    public class ServerLoginAPM : ServerLogin
     {
 
         public delegate void TransmissionDataDelegate(NetworkStream stream);
-        public ServerEchoAPM(IPAddress IP, int port) : base(IP, port)
+        public ServerLoginAPM(IPAddress IP, int port) : base(IP, port)
         {
 
         }

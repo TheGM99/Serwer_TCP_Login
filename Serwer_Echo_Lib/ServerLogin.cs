@@ -14,7 +14,7 @@ namespace Serwer_Echo_Lib
 
     /// </summary>
 
-    public abstract class ServerEcho
+    public abstract class ServerLogin
 
     {
 
@@ -92,7 +92,7 @@ namespace Serwer_Echo_Lib
         /// <param name="IP">IP address of the server instance.</param>
         /// <param name="port">Port number of the server instance.</param>
 
-        public ServerEcho(IPAddress IP, int port)
+        public ServerLogin(IPAddress IP, int port)
         {
 
 

@@ -12,7 +12,7 @@ namespace Serwer_Echo
     {
         static void Main(string[] args)
         {
-            ServerEchoAPM server = new ServerEchoAPM(IPAddress.Parse("127.0.0.1"), 2048);
+            ServerLoginAPM server = new ServerLoginAPM(IPAddress.Parse("127.0.0.1"), 2048);
             server.Start();
         }
     }
