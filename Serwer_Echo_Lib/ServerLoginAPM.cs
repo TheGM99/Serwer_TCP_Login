@@ -116,7 +116,7 @@ namespace Serwer_Echo_Lib
                     }
                     else
                     {
-                        dane = "Wybrano nieprawidlowa opcje\n";
+                        dane = "Wybrano nieprawidlowa opcje\r\n";
                         writebuffer = Encoding.ASCII.GetBytes(dane);
                         stream.Write(writebuffer, 0, writebuffer.Length);
                     }

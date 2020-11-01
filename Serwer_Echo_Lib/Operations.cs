@@ -22,10 +22,10 @@ namespace Serwer_Echo_Lib
             if (dt.Rows[0][0].ToString() == "1")
             {
                 /* I have made a new page called home page. If the user is successfully authenticated then the form will be moved to the next form */
-              result = "Logging in was successful !";
+              result = "Logging in was successful !\r\n";
             }
             else
-               result = "Invalid username or password !";
+               result = "Invalid username or password !\r\n";
             return result;
         }
 
@@ -41,7 +41,7 @@ namespace Serwer_Echo_Lib
             if (dt.Rows[0][0].ToString() == "1")
             {
                 /* I have made a new page called home page. If the user is successfully authenticated then the form will be moved to the next form */
-                result = "This user already exists !";
+                result = "This user already exists !\r\n";
             }
             else
             {
@@ -50,7 +50,7 @@ namespace Serwer_Echo_Lib
                 SqlCommand cmd = new SqlCommand(command, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                result = "Account Created !";
+                result = "Account Created !\r\n";
             }
             return result;
 
