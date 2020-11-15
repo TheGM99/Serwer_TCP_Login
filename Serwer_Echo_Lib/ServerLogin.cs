@@ -145,6 +145,86 @@ namespace Serwer_Echo_Lib
         /// </summary>
 
         protected abstract void AcceptClient();
+        
+        /// <summary>
+        /// This function reads infromation sent by a client
+        /// </summary>
+        /// <param name="stream">Connection with Client</param>
+        /// <returns>all signs read from client</returns>
+        private StringBuilder ReadFromStream(NetworkStream stream)
+        {
+            StringBuilder readable = new StringBuilder();
+            byte[] readbuffer = new byte[Buffer_size];
+            do
+            {
+                int message_size = stream.Read(readbuffer, 0, readbuffer.Length);
+                readable.Append(Encoding.ASCII.GetString(readbuffer, 0, message_size));
+            } while (stream.DataAvailable);
+
+            return readable;
+
+        }
+        /// <summary>
+        /// This function sends data to the client
+        /// </summary>
+        /// <param name="stream">Conecction with the client</param>
+        /// <param name="dane">data sent to the client</param>
+        private void WriteToStream(NetworkStream stream, string dane)
+        {
+            byte[] writebuffer = new byte[Buffer_size];
+            writebuffer = Encoding.ASCII.GetBytes(dane);
+            stream.Write(writebuffer, 0, writebuffer.Length);
+        }
+
+        /// <summary>
+        /// Function responsible for communication with the client and letting him register/login .
+        /// </summary>
+        /// <param name="stream"></param>
+        protected void LoginSystem(NetworkStream stream)
+        {
+
+            string dane;
+            StringBuilder readable = new StringBuilder();
+            byte[] readbuffer = new byte[Buffer_size];
+            byte[] writebuffer = new byte[Buffer_size];
+            int message_size;
+
+            WriteToStream(stream, "Wybierz: Logoawanie [1], Rejestracja [2] lub Wyjscie [3]: ");
+            readable = ReadFromStream(stream);
+            if (readable[0] == '1')
+            {
+                WriteToStream(stream, "Podaj dane do logowania: ");
+                readable = ReadFromStream(stream);
+
+                dane = readable.ToString().Replace('\n', ' ');
+                dane = dane.Replace('\r', ' ');
+                string[] logs = dane.Split(' ');
+
+                dane = Operations.Login(logs[0], logs[1]);
+                WriteToStream(stream, dane);
+            }
+            else if (readable[0] == '2')
+            {
+                WriteToStream(stream, "Podaj dane do rejestracji: ");
+                readable = ReadFromStream(stream);
+
+                dane = readable.ToString().Replace('\n', ' ');
+                dane = dane.Replace('\r', ' ');
+                string[] logs = dane.Split(' ');
+
+                dane = Operations.Register(logs[0], logs[1]);
+                WriteToStream(stream, dane);
+
+            }
+            else if (readable[0] == '3')
+            {
+                return;
+            }
+            else
+            {
+                WriteToStream(stream, "Wybrano nieprawidlowa opcje\r\n");
+            }
+        }
 
         /// <summary>
         /// This function implements Echo and transmits the data between server and client.

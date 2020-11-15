@@ -44,7 +44,6 @@
     <Compile Include="Operations.cs" />
     <Compile Include="ServerLogin.cs" />
     <Compile Include="ServerLoginAPM.cs" />
-    <Compile Include="ServerLoginSync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

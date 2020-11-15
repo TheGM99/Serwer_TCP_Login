@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Sockets;
 
 namespace Serwer_Echo_Lib
 {
@@ -17,11 +18,10 @@ namespace Serwer_Echo_Lib
             SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=ServerEcho_Login;Integrated Security=True"); // making connection   
             SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM Accounts WHERE Login='" + Login + "' AND password='" + Password + "'", con);
 
-            DataTable dt = new DataTable(); //this is creating a virtual table  
+            DataTable dt = new DataTable(); 
             sda.Fill(dt);
             if (dt.Rows[0][0].ToString() == "1")
-            {
-                /* I have made a new page called home page. If the user is successfully authenticated then the form will be moved to the next form */
+            {             
               result = "Logging in was successful !\r\n";
             }
             else
@@ -33,14 +33,15 @@ namespace Serwer_Echo_Lib
         {
 
             string result;
-            SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=ServerEcho_Login;Integrated Security=True"); // making connection   
+            //Użyto 
+            SqlConnection con = new SqlConnection(@"Data Source=.;Initial Catalog=ServerEcho_Login;Integrated Security=True"); // making connection (DATABASE NOT PROVIDED!!)
             SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM Accounts WHERE Login='" + Login + "' AND password='" + Password + "'", con);
 
-            DataTable dt = new DataTable(); //this is creating a virtual table  
+            DataTable dt = new DataTable();
             sda.Fill(dt);
             if (dt.Rows[0][0].ToString() == "1")
             {
-                /* I have made a new page called home page. If the user is successfully authenticated then the form will be moved to the next form */
+  
                 result = "This user already exists !\r\n";
             }
             else
@@ -55,5 +56,7 @@ namespace Serwer_Echo_Lib
             return result;
 
         }
+
+        
     }
 }
